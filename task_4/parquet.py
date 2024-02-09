@@ -25,7 +25,7 @@ def download_and_save_images(links, max_images=1000):
     for link in links:
         try:
             response = requests.get(link)
-            
+
             if response.status_code == 200:
                 image = Image.open(BytesIO(response.content))
                 image.save(f'C:\\Users\\itsab\\Documents\\Github\\prapro\\task_4\\images\\image_{count}.jpg')
@@ -38,10 +38,13 @@ def download_and_save_images(links, max_images=1000):
         except Exception as e:
             print(f"Error downloading image from {link}: {e}")
 
-table = pq.read_table(r'C:\Users\itsab\Documents\Github\prapro\links.parquet')
-df = table.to_pandas()
 
-monitor_thread = threading.Thread(target=monitor_system)
-monitor_thread.start()
+if(__name__ == "__main__") : 
+    
+    table = pq.read_table(r'C:\Users\itsab\Documents\Github\prapro\links.parquet')
+    df = table.to_pandas()
 
-download_and_save_images(df[0:10000]['URL'])
+    monitor_thread = threading.Thread(target=monitor_system)
+    monitor_thread.start()
+
+    download_and_save_images(df[0:10000]['URL'])

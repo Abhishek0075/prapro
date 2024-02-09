@@ -1,3 +1,4 @@
 \images
 *.parquet
 *.ipynb
+__pycache__
