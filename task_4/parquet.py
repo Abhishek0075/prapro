@@ -2,8 +2,7 @@ import pyarrow.parquet as pq
 import requests
 from io import BytesIO
 from PIL import Image
-import time 
-import threading
+import time
 import psutil
 
 def monitor_system(interval=1):
@@ -14,13 +13,14 @@ def monitor_system(interval=1):
 
         # Monitor network usage
         network_io = psutil.net_io_counters()
-        print(f"Network Usage: Sent={network_io.bytes_sent} bytes, Received={network_io.bytes_recv} bytes")
+        print(
+            f"Network Usage: Sent={network_io.bytes_sent} bytes, Received={network_io.bytes_recv} bytes"
+        )
 
         time.sleep(interval)
 
-
 def download_and_save_images(links, max_images=1000):
-    
+
     count = 0
     for link in links:
         try:
@@ -28,7 +28,9 @@ def download_and_save_images(links, max_images=1000):
 
             if response.status_code == 200:
                 image = Image.open(BytesIO(response.content))
-                image.save(f'C:\\Users\\itsab\\Documents\\Github\\prapro\\task_4\\images\\image_{count}.jpg')
+                image.save(
+                    f"C:\\Users\\itsab\\Documents\\Github\\prapro\\task_4\\images\\image_{count}.jpg"
+                )
                 count += 1
                 if count >= max_images:
                     break
@@ -39,12 +41,12 @@ def download_and_save_images(links, max_images=1000):
             print(f"Error downloading image from {link}: {e}")
 
 
-if(__name__ == "__main__") : 
-    
-    table = pq.read_table(r'C:\Users\itsab\Documents\Github\prapro\links.parquet')
-    df = table.to_pandas()
+if __name__ == "__main__":
 
-    monitor_thread = threading.Thread(target=monitor_system)
-    monitor_thread.start()
+    table = pq.read_table(r"C:\Users\itsab\Documents\Github\prapro\links.parquet")
+    links = table["URL"]
 
-    download_and_save_images(df[0:10000]['URL'])
+    # monitor_thread = threading.Thread(target=monitor_system)
+    # monitor_thread.start()
+
+    download_and_save_images(links[0:2])

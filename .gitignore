@@ -1,4 +1,5 @@
-\images
+images
 *.parquet
 *.ipynb
-__pycache__
+*cache*
+another.*
