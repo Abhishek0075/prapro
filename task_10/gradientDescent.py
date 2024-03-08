@@ -47,8 +47,6 @@ def gDescent(x,y,learning_rate = 0.01, iterations = 100):
         # Pause briefly to observe the plot update
         plt.pause(0.5)
 
-    # Keep the plot displayed at the end
-    plt.show()
-    
+    plt.close()
     return (slope, intercept)
 

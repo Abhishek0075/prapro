@@ -60,15 +60,20 @@ class Downloader:
             start, stop, step = index.indices(len(self.data))
             links = self.data[start:stop]
 
-        num_partitions = 10
-        partition_size = len(links) // num_partitions
         threads = []
 
-        for i in range(num_partitions + 1):
+        if len(links) < 10:
+            num_threads = len(links)
+            partition_size = 1
+        else:
+            num_threads = 10
+            partition_size = len(links) // num_threads
+            
+        for i in range(num_threads):
             start_index = i * partition_size
             end_index = (i + 1) * partition_size
 
-            if i == num_partitions:  # Last partition
+            if i == num_threads-1:  # Last partition
                 end_index = len(links)
 
             # print("Partition:", i, "Start:", start_index, "End:", end_index)

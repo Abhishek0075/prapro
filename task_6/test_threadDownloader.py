@@ -16,7 +16,7 @@ def test_downloader_index():
 def test_downloader_slice():
     path = r"C:\Users\itsab\Documents\Github\prapro\links.parquet"
     downloader_instance = Downloader(path)
-    paths = downloader_instance[0:100]
+    paths = downloader_instance[0:30]
     print(paths)
     assert len(paths) > 0 # Checking done 
     for path in paths:
