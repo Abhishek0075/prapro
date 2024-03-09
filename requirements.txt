@@ -1,0 +1,7 @@
+numpy
+pyarrow
+matplotlib
+time
+requests
+pillow
+pytest

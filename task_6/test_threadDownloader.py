@@ -4,7 +4,7 @@ from downloader import Downloader
 # when we set paths global in downloader.py, it will be shared across all instances of Downloader
 
 def test_downloader_index():
-    path = r"C:\Users\itsab\Documents\Github\prapro\links.parquet"
+    path = r"C:\Users\itsab\Documents\Github\prapro\testerFile.parquet"
     downloader_instance = Downloader(path)
     paths = downloader_instance[0]
     print(paths)
@@ -14,7 +14,7 @@ def test_downloader_index():
 
 
 def test_downloader_slice():
-    path = r"C:\Users\itsab\Documents\Github\prapro\links.parquet"
+    path = r"C:\Users\itsab\Documents\Github\prapro\testerFile.parquet"
     downloader_instance = Downloader(path)
     paths = downloader_instance[0:30]
     print(paths)

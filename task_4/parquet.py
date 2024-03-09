@@ -2,22 +2,22 @@ import pyarrow.parquet as pq
 import requests
 from io import BytesIO
 from PIL import Image
-import time
-import psutil
+# import time
+# import psutil
 
-def monitor_system(interval=1):
-    while True:
-        # Monitor CPU usage
-        cpu_percent = psutil.cpu_percent(interval=interval)
-        print(f"CPU Usage: {cpu_percent}%")
+# def monitor_system(interval=1):
+#     while True:
+#         # Monitor CPU usage
+#         cpu_percent = psutil.cpu_percent(interval=interval)
+#         print(f"CPU Usage: {cpu_percent}%")
 
-        # Monitor network usage
-        network_io = psutil.net_io_counters()
-        print(
-            f"Network Usage: Sent={network_io.bytes_sent} bytes, Received={network_io.bytes_recv} bytes"
-        )
+#         # Monitor network usage
+#         network_io = psutil.net_io_counters()
+#         print(
+#             f"Network Usage: Sent={network_io.bytes_sent} bytes, Received={network_io.bytes_recv} bytes"
+#         )
 
-        time.sleep(interval)
+#         time.sleep(interval)
 
 def download_and_save_images(links, max_images=1000):
 
@@ -43,7 +43,7 @@ def download_and_save_images(links, max_images=1000):
 
 if __name__ == "__main__":
 
-    table = pq.read_table(r"C:\Users\itsab\Documents\Github\prapro\links.parquet")
+    table = pq.read_table(r"C:\Users\itsab\Documents\Github\prapro\testerFile.parquet")
     links = table["URL"]
 
     # monitor_thread = threading.Thread(target=monitor_system)
