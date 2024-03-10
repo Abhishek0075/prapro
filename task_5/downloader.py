@@ -2,8 +2,9 @@ import requests
 import pyarrow.parquet as pq
 import PIL.Image as Image
 from io import BytesIO
+from pathlib import Path
 
-
+rootFilePath = Path(__file__).resolve().parent.parent
 class Downloader:
 
     def __init__(self, path: str):
@@ -30,7 +31,7 @@ class Downloader:
                 # print(response.content)
                 if response.status_code == 200:
                     image = Image.open(BytesIO(response.content))
-                    path = f"C:\\Users\\itsab\\Documents\\Github\\prapro\\images\\image_{count}.jpg"
+                    path = f"{rootFilePath}\\images\\image_{count}.jpg"
                     image.save(path)
                     paths.append(path)
                 else:

@@ -2,6 +2,7 @@ import pyarrow.parquet as pq
 import requests
 from io import BytesIO
 from PIL import Image
+from pathlib import Path
 # import time
 # import psutil
 
@@ -18,20 +19,18 @@ from PIL import Image
 #         )
 
 #         time.sleep(interval)
+rootFilePath = Path(__file__).parent.parent.resolve()
 
 def download_and_save_images(links, max_images=1000):
-
     count = 0
     for link in links:
+        count += 1
         try:
             response = requests.get(link)
 
             if response.status_code == 200:
                 image = Image.open(BytesIO(response.content))
-                image.save(
-                    f"C:\\Users\\itsab\\Documents\\Github\\prapro\\task_4\\images\\image_{count}.jpg"
-                )
-                count += 1
+                image.save(f"{rootFilePath}/images/image_{count}.jpg")
                 if count >= max_images:
                     break
             else:
@@ -43,7 +42,7 @@ def download_and_save_images(links, max_images=1000):
 
 if __name__ == "__main__":
 
-    table = pq.read_table(r"C:\Users\itsab\Documents\Github\prapro\testerFile.parquet")
+    table = pq.read_table(f"{rootFilePath}/testerFile.parquet")
     links = table["URL"]
 
     # monitor_thread = threading.Thread(target=monitor_system)

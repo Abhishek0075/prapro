@@ -4,10 +4,11 @@ import PIL.Image as Image
 from io import BytesIO
 import threading
 import sys
+from pathlib import Path
 
 global counter
 counter = 0
-
+rootFilePath = Path(__file__).resolve().parent.parent
 class Downloader:
 
     def __init__(self, path: str):
@@ -26,7 +27,7 @@ class Downloader:
                     lock.acquire()
                     try:
                         image = Image.open(BytesIO(response.content))
-                        path = f"C:\\Users\\itsab\\Documents\\Github\\prapro\\images\\image_{counter}.jpg"
+                        path = f"{rootFilePath}\\images\\image_{counter}.jpg"
                         # print(f"Image saved successfully as image_{counter}.jpg")
                         print(f"Successful at {counter}")
                         image.save(path)
