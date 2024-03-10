@@ -5,8 +5,7 @@ from pathlib import Path
 # when we set paths global in downloader.py, it will be shared across all instances of Downloader
 rootFilePath = Path(__file__).resolve().parent.parent
 def test_downloader_index():
-    path = f"{rootFilePath}\\testerFile.parquet"
-    downloader_instance = Downloader(path)
+    downloader_instance = Downloader(f"{rootFilePath}/testerFile.parquet")
     paths = downloader_instance[0]
     print(paths)
     assert len(paths) > 0 # Checking done
@@ -15,8 +14,7 @@ def test_downloader_index():
 
 
 def test_downloader_slice():
-    path = f"{rootFilePath}\\testerFile.parquet"
-    downloader_instance = Downloader(path)
+    downloader_instance = Downloader(f"{rootFilePath}/testerFile.parquet")
     paths = downloader_instance[0:30]
     print(paths)
     assert len(paths) > 0 # Checking done 
